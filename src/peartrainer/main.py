@@ -1,4 +1,5 @@
 """Peartrainer - A musical ear training software written in Python."""
+import rtmidi
 
 
 def generate_interval() -> tuple[int]:
@@ -17,7 +18,7 @@ def play_midi_interval(interval: tuple[int]) -> None:
 
 def main() -> None:
     """Run controller for Peartrainer and set up software."""
-    pass
+    midiout = rtmidi.MidiOut()
 
 
 if __name__ == '__main__':
