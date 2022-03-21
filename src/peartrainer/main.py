@@ -19,6 +19,14 @@ def play_midi_interval(interval: tuple[int]) -> None:
 def main() -> None:
     """Run controller for Peartrainer and set up software."""
     midiout = rtmidi.MidiOut()
+    availablePorts = midiout.get_ports()
+
+    portOptions = "Select Midiport:\n"
+    for port in availablePorts:
+        portOptions = portOptions + f"\n({availablePorts.index(port)}) {port}"
+
+    portOptions = portOptions + f"\n({len(availablePorts)}) create Port\n\n>"
+    print(portOptions)
 
 
 if __name__ == '__main__':
