@@ -1,4 +1,5 @@
 """Peartrainer - A musical ear training software written in Python."""
+import rtmidi
 
 
 def generate_interval() -> tuple[int]:
@@ -6,7 +7,7 @@ def generate_interval() -> tuple[int]:
     return (60, 60)
 
 
-def play_midi_interval(interval: tuple[int]) -> None:
+def play_midi_interval(interval: tuple[int], port: rtmidi.MidiIn) -> None:
     """
     Play interval from given tuple.
 
