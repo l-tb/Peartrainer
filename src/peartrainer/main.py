@@ -1,5 +1,6 @@
 """Peartrainer - A musical ear training software written in Python."""
 import rtmidi
+import time
 
 
 def generate_interval() -> tuple[int]:
@@ -7,7 +8,7 @@ def generate_interval() -> tuple[int]:
     return (60, 60)
 
 
-def play_midi_interval(interval: tuple[int], port: rtmidi.MidiIn) -> None:
+def play_midi_interval(interval: tuple[int], port: rtmidi.MidiOut) -> None:
     """
     Play interval from given tuple.
 
@@ -17,6 +18,14 @@ def play_midi_interval(interval: tuple[int], port: rtmidi.MidiIn) -> None:
     noteOneOff = [0x80, interval[0], 112]
     noteTwoOn = [0x90, interval[1], 112]
     noteTwoOff = [0x80, interval[1], 112]
+
+    port.send_message(noteOneOn)
+    time.sleep(0.5)
+    port.send_message(noteTwoOn)
+    time.sleep(0.7)
+    port.send_message(noteOneOff)
+    port.send_message(noteTwoOff)
+    time.sleep(0.1)
 
 
 def main() -> None:
