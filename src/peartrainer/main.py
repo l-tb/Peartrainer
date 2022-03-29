@@ -13,7 +13,10 @@ def play_midi_interval(interval: tuple[int], port: rtmidi.MidiIn) -> None:
 
     Tuple contains midi Note Values.
     """
-    pass
+    noteOneOn = [0x90, interval[0], 112]
+    noteOneOff = [0x80, interval[0], 112]
+    noteTwoOn = [0x90, interval[1], 112]
+    noteTwoOff = [0x80, interval[1], 112]
 
 
 def main() -> None:
