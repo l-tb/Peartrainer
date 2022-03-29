@@ -33,7 +33,7 @@ def test_system_midi(midiout, midiin):
         target=collect_midi, args=(midiin, messages)
     )
     midiCollector.start()
-    pt.play_midi_interval((60, 64), midiout)
+    pt.play_midi_interval((60, 68), midiout)
 
     midiCollector.join()
     cleanMidi = []
