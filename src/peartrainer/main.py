@@ -25,8 +25,8 @@ def main() -> None:
     for port in availablePorts:
         portOptions = portOptions + f"\n({availablePorts.index(port)}) {port}"
 
-    portOptions = portOptions + f"\n({len(availablePorts)}) create Port\n\n>"
-    print(portOptions)
+    portOptions = portOptions + f"\n({len(availablePorts)}) create Port\n\n> "
+    chosenPort = input(portOptions)
 
 
 if __name__ == '__main__':
