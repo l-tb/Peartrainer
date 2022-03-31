@@ -1,5 +1,7 @@
 """Peartrainer - A musical ear training software written in Python."""
 import rtmidi
+import click
+import time
 import sys
 
 
@@ -39,8 +41,16 @@ def main() -> None:
         midiout.open_port(port)
     elif port == len(availablePorts):
         midiout.open_virtual_port(name="Peartrainer")
+        input("\nPlease connect the Port. (press Enter to continue)")
     else:
         print("\nInvalid port option.")
+
+    print("\nPlaying test...")
+    midiout.send_message([0x90, 60, 112])
+    time.sleep(0.5)
+    midiout.send_message([0x80, 60, 112])
+    time.sleep(0.1)
+    click.confirm("Did you hear a sound?", default=True)
 
 
 if __name__ == "__main__":
