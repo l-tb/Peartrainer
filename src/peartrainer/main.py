@@ -18,7 +18,7 @@ def play_midi_interval(interval: tuple[int]) -> None:
 
 
 def main() -> None:
-    """Run controller for Peartrainer and set up software."""
+    """Run Peartrainer and set up software."""
     midiout = rtmidi.MidiOut()
     availablePorts = midiout.get_ports()
 
@@ -32,9 +32,15 @@ def main() -> None:
     try:
         port = int(chosenPort)
     except ValueError:
-        print("Invalid port option.")
+        print("\nInvalid port option.")
         sys.exit(1)
-    midiout.open_port(port)
+
+    if 0 <= port < len(availablePorts):
+        midiout.open_port(port)
+    elif port == len(availablePorts):
+        midiout.open_virtual_port(name="Peartrainer")
+    else:
+        print("\nInvalid port option.")
 
 
 if __name__ == "__main__":
