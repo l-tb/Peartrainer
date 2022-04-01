@@ -39,7 +39,6 @@ intervalNames = {
 }
 
 helpStr = f"""
-
 Interval Keys:
   {intervalNames[intervals[0]]}: {intervals[0]}
   {intervalNames[intervals[1]]}: {intervals[1]}
