@@ -160,9 +160,13 @@ def main(alsa, jack, core, multimedia) -> None:
             currentInterval = generate_interval()
             play_midi_interval(currentInterval[0], midiout)
 
-        answere = click.prompt(
-            "Type the correct interval (type help for more information)"
-        )
+        generateNew = False
+        try:
+            answere = click.prompt(
+                "Type the correct interval (type help for more information)"
+            )
+        except KeyboardInterrupt:
+            sys.exit(1)
         if answere == "help":
             print(helpStr)
         elif answere == "quit":
@@ -171,13 +175,15 @@ def main(alsa, jack, core, multimedia) -> None:
             print(
                 f"The correct interval was {intervalNames[currentInterval[1]]}"
             )
+            generateNew = True
             continue
+        elif answere == "replay":
+            play_midi_interval(currentInterval[0], midiout)
         elif answere == currentInterval[1]:
             print("Correct answere")
             generateNew = True
         elif answere in intervals:
             print("Wrong answere")
-            generateNew = False
         else:
             print("Invalid input")
 
