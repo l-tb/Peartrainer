@@ -100,6 +100,11 @@ def main() -> None:
             print(helpStr)
         elif answere == "quit":
             break
+        elif answere == "skip":
+            print(
+                f"The correct interval was {intervalNames[currentInterval[1]]}"
+            )
+            continue
         elif answere is currentInterval[1]:
             print("Correct answere")
             generateNew = True
