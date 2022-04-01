@@ -158,7 +158,7 @@ def main(alsa, jack, core, multimedia) -> None:
     while True:
         if generateNew is True:
             currentInterval = generate_interval()
-            play_midi_interval(currentInterval[0])
+            play_midi_interval(currentInterval[0], midiout)
 
         answere = click.prompt(
             "Type the correct interval (type help for more information)"
