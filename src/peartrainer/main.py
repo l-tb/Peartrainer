@@ -172,7 +172,7 @@ def main(alsa, jack, core, multimedia) -> None:
                 f"The correct interval was {intervalNames[currentInterval[1]]}"
             )
             continue
-        elif answere is currentInterval[1]:
+        elif answere == currentInterval[1]:
             print("Correct answere")
             generateNew = True
         elif answere in intervals:
