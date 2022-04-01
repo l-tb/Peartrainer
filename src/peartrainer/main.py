@@ -5,9 +5,44 @@ import time
 import sys
 
 
-def generate_interval() -> tuple[int]:
+helpStr = ""
+
+intervals = [
+    "u",
+    "2b",
+    "2",
+    "3b",
+    "3",
+    "4",
+    "5b",
+    "5",
+    "6b",
+    "6",
+    "7b",
+    "7",
+    "8"
+]
+
+intervalNames = {
+    "u": "unison",
+    "2b": "minor second",
+    "2": "major second",
+    "3b": "minor third",
+    "3": "major third",
+    "4": "perfect fourth",
+    "5b": "tritone",
+    "5": "perfect fifth",
+    "6b": "minor sixth",
+    "6": "major sixth",
+    "7b": "minor seventh",
+    "7": "major seventh",
+    "8": "octave"
+}
+
+
+def generate_interval() -> tuple[tuple[int], str]:
     """Generate random interval."""
-    return (60, 60)
+    return ((60, 60), "u")
 
 
 def play_midi_interval(interval: tuple[int]) -> None:
@@ -21,7 +56,7 @@ def play_midi_interval(interval: tuple[int]) -> None:
 
 def main() -> None:
     """Run Peartrainer and set up software."""
-    midiout = rtmidi.MidiOut()
+    midiout = rtmidi.MidiOut(3)
     availablePorts = midiout.get_ports()
 
     portOptions = "Select Midiport:\n"
@@ -51,6 +86,28 @@ def main() -> None:
     midiout.send_message([0x80, 60, 112])
     time.sleep(0.1)
     click.confirm("Did you hear a sound?", default=True)
+
+    generateNew = True
+    while True:
+        if generateNew is True:
+            currentInterval = generate_interval()
+            play_midi_interval(currentInterval[0])
+
+        answere = click.prompt(
+            "Type the correct interval (type help for more information)"
+        )
+        if answere == "help":
+            print(helpStr)
+        elif answere == "quit":
+            break
+        elif answere is currentInterval[1]:
+            print("Correct answere")
+            generateNew = True
+        elif answere in intervals:
+            print("Wrong answere")
+            generateNew = False
+        else:
+            print("Invalid input")
 
 
 if __name__ == "__main__":
