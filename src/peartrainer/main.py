@@ -2,6 +2,7 @@
 import rtmidi
 import click
 import time
+from random import randint
 import sys
 
 
@@ -63,7 +64,11 @@ To exit Peartrainer type 'quit'.
 
 def generate_interval() -> tuple[tuple[int], str]:
     """Generate random interval."""
-    return ((60, 60), "u")
+    firstNote = randint(48, 73)
+    newInterval = randint(0, 12)
+    secondNote = firstNote + newInterval
+    newIntervalName = intervals[newInterval]
+    return ((firstNote, secondNote), newIntervalName)
 
 
 def play_midi_interval(interval: tuple[int]) -> None:
