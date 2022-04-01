@@ -71,13 +71,24 @@ def generate_interval() -> tuple[tuple[int], str]:
     return ((firstNote, secondNote), newIntervalName)
 
 
-def play_midi_interval(interval: tuple[int]) -> None:
+def play_midi_interval(interval: tuple[int], port: rtmidi.MidiOut) -> None:
     """
     Play interval from given tuple.
 
     Tuple contains midi Note Values.
     """
-    pass
+    noteOneOn = [0x90, interval[0], 112]
+    noteOneOff = [0x80, interval[0], 112]
+    noteTwoOn = [0x90, interval[1], 112]
+    noteTwoOff = [0x80, interval[1], 112]
+
+    port.send_message(noteOneOn)
+    time.sleep(0.5)
+    port.send_message(noteTwoOn)
+    time.sleep(0.7)
+    port.send_message(noteOneOff)
+    port.send_message(noteTwoOff)
+    time.sleep(0.1)
 
 
 def output_test(midiout):
