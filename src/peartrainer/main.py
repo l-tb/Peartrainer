@@ -132,28 +132,8 @@ def setup(midiout):
         print("\nInvalid port option.")
 
 
-@click.command()
-@click.option("--alsa", is_flag=True, default=False)
-@click.option("--jack", is_flag=True, default=False)
-@click.option("--core", is_flag=True, default=False)
-@click.option("--multimedia", is_flag=True, default=False)
-def main(alsa, jack, core, multimedia) -> None:
-    """Run Peartrainer and set up software."""
-    if alsa is True:
-        midiout = rtmidi.MidiOut(2)
-    elif jack is True:
-        midiout = rtmidi.MidiOut(3)
-    elif core is True:
-        midiout = rtmidi.MidiOut(1)
-    elif multimedia is True:
-        midiout = rtmidi.MidiOut(4)
-    else:
-        midiout = rtmidi.MidiOut()
-
-    setup(midiout)
-
-    output_test(midiout)
-
+def run(midiout):
+    """Run peartrainer."""
     generateNew = True
     while True:
         if generateNew is True:
@@ -186,6 +166,31 @@ def main(alsa, jack, core, multimedia) -> None:
             print("Wrong answere")
         else:
             print("Invalid input")
+
+
+@click.command()
+@click.option("--alsa", is_flag=True, default=False)
+@click.option("--jack", is_flag=True, default=False)
+@click.option("--core", is_flag=True, default=False)
+@click.option("--multimedia", is_flag=True, default=False)
+def main(alsa, jack, core, multimedia) -> None:
+    """Run Peartrainer and set up software."""
+    if alsa is True:
+        midiout = rtmidi.MidiOut(2)
+    elif jack is True:
+        midiout = rtmidi.MidiOut(3)
+    elif core is True:
+        midiout = rtmidi.MidiOut(1)
+    elif multimedia is True:
+        midiout = rtmidi.MidiOut(4)
+    else:
+        midiout = rtmidi.MidiOut()
+
+    setup(midiout)
+
+    output_test(midiout)
+
+    run(midiout)
 
 
 if __name__ == "__main__":
