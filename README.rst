@@ -15,10 +15,10 @@ Supported APIs
 
 The following APIs are supported:
 
- - Linux ALSA
- - Unix Jack
- - MacOS Core Midi
- - Windows Multimedia Library
+- Linux ALSA
+- Unix Jack
+- MacOS Core Midi
+- Windows Multimedia Library
 
 When using the Windows Multimedia Library you will need a tool like loopMidi to create Virtual Ports
 
@@ -27,10 +27,10 @@ Specifying API
 
 You can use the following flags to use a specific API:
 
- - Linux ALSA: `--alsa`
- - Unix Jack: `--jack`
- - MacOS Core Midi: `--core`
- - Windows Multimedia Library: `--multimedia`
+- Linux ALSA: `--alsa`
+- Unix Jack: `--jack`
+- MacOS Core Midi: `--core`
+- Windows Multimedia Library: `--multimedia`
 
 Development
 ===========
