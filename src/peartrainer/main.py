@@ -121,12 +121,28 @@ def setup(midiout):
     else:
         print("\nInvalid port option.")
 
-    print("\nPlaying test...")
-    midiout.send_message([0x90, 60, 112])
-    time.sleep(0.5)
-    midiout.send_message([0x80, 60, 112])
-    time.sleep(0.1)
-    click.confirm("Did you hear a sound?", default=True)
+
+@click.command()
+@click.option("--alsa", is_flag=True, default=False)
+@click.option("--jack", is_flag=True, default=False)
+@click.option("--core", is_flag=True, default=False)
+@click.option("--multimedia", is_flag=True, default=False)
+def main(alsa, jack, core, multimedia) -> None:
+    """Run Peartrainer and set up software."""
+    if alsa is True:
+        midiout = rtmidi.MidiOut(2)
+    elif jack is True:
+        midiout = rtmidi.MidiOut(3)
+    elif core is True:
+        midiout = rtmidi.MidiOut(1)
+    elif multimedia is True:
+        midiout = rtmidi.MidiOut(4)
+    else:
+        midiout = rtmidi.MidiOut()
+
+    setup(midiout)
+
+    output_test(midiout)
 
     generateNew = True
     while True:
