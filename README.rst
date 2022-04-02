@@ -8,6 +8,9 @@ Usage
 You will need to connect a Synthesizer because Peartrainer can only send
 Midi but is unable to produce sound.
 
+Installation
+============
+
 Portable
 --------
 
