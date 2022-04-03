@@ -145,7 +145,7 @@ def run(midiout):
         generateNew = False
         try:
             answere = click.prompt(
-                "\nType the correct interval (type help for more information)"
+                "Type the correct interval (type help for more information)"
             )
         except KeyboardInterrupt:
             sys.exit(1)
@@ -165,9 +165,9 @@ def run(midiout):
             print("Correct answere")
             generateNew = True
         elif answere in intervals:
-            print("Wrong answere")
+            print("Wrong answere\n")
         else:
-            print("Invalid input")
+            print("Invalid input\n")
 
 
 @click.command()
