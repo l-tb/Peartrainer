@@ -82,7 +82,7 @@ def play_midi_interval(interval: tuple[int], port: rtmidi.MidiOut) -> None:
     noteTwoOff = [0x80, interval[1], 112]
 
     port.send_message(noteOneOn)
-    time.sleep(0.5)
+    time.sleep(0.8)
     port.send_message(noteTwoOn)
     time.sleep(0.7)
     port.send_message(noteOneOff)
