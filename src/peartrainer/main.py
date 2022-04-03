@@ -143,7 +143,7 @@ def run(midiout):
         generateNew = False
         try:
             answere = click.prompt(
-                "Type the correct interval (type help for more information)"
+                "\nType the correct interval (type help for more information)"
             )
         except KeyboardInterrupt:
             sys.exit(1)
