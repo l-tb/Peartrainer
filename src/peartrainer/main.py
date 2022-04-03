@@ -4,6 +4,7 @@ import click
 import time
 from random import randint
 import sys
+import os
 
 
 intervals = [
@@ -139,6 +140,7 @@ def run(midiout):
         if generateNew is True:
             currentInterval = generate_interval()
             play_midi_interval(currentInterval[0], midiout)
+            os.system('cls' if os.name == 'nt' else 'clear')
 
         generateNew = False
         try:
@@ -163,9 +165,9 @@ def run(midiout):
             print("Correct answere")
             generateNew = True
         elif answere in intervals:
-            print("Wrong answere")
+            print("Wrong answere\n")
         else:
-            print("Invalid input")
+            print("Invalid input\n")
 
 
 @click.command()
