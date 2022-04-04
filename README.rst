@@ -2,12 +2,6 @@
  Peartrainer - A musical ear trainer written in python
 =======================================================
 
-Usage
-=====
-
-You will need to connect a Synthesizer because Peartrainer can only send
-Midi but is unable to produce sound.
-
 Installation
 ============
 
@@ -15,8 +9,7 @@ Portable
 --------
 
 Just clone the repository or download the code and excecute the main.py
-file found in src/peartrainer. Note: You may need to make the file
-excecutable.
+file found in src/peartrainer. You will need to install `Poetry <https://github.com/python-poetry/poetry>`__ and run ``poetry install`` to install all dependencies.
 
 Install from Release
 --------------------
@@ -28,6 +21,16 @@ Build from Source
 
 Install `Poetry <https://github.com/python-poetry/poetry>`__ and clone this repository.
 Then run ``poetry build`` in the project directory and install the created .tar.gz using pip.
+
+Usage
+=====
+
+If you use the portable version of peartrainer visit src/peartrainer and run ``poetry run main.py``.
+If you installed peartrainer using pip you can just execute it from your terminal by executing ``peartrainer``.
+You will need to connect a Synthesizer because Peartrainer can only send
+Midi but is unable to produce sound.
+
+
 
 Supported APIs
 ==============
