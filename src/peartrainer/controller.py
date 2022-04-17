@@ -71,11 +71,13 @@ class Controller:
 
         portOptions = "Select Midiport:\n"
         for port in availablePorts:
-            portOptions = portOptions + (f"\n({availablePorts.index(port)}) "
-                                         f"{port}")
+            portOptions = portOptions + (
+                f"\n({availablePorts.index(port)}) " f"{port}"
+            )
 
-        portOptions = portOptions + (f"\n({len(availablePorts)})"
-                                     " create Port\n\n> ")
+        portOptions = portOptions + (
+            f"\n({len(availablePorts)}) create Port\n\n> "
+        )
         chosenPort = input(portOptions)
 
         try:
@@ -132,8 +134,10 @@ class Controller:
             if confirmation is True:
                 testing = False
             else:
-                input("Please check your midi connections"
-                      " (press enter to replay)")
+                input(
+                    "Please check your midi connections"
+                    " (press enter to replay)"
+                )
 
     def run(self):
         """Run peartrainer."""
@@ -146,8 +150,10 @@ class Controller:
 
             generateNew = False
             try:
-                answere = click.prompt("Type the correct interval"
-                                       " (type help for more information)")
+                answere = click.prompt(
+                    "Type the correct interval"
+                    " (type help for more information)"
+                )
             except KeyboardInterrupt:
                 sys.exit(1)
             if answere == "help":
@@ -155,8 +161,10 @@ class Controller:
             elif answere == "quit":
                 break
             elif answere == "skip":
-                print("The correct interval was"
-                      f"{self.intervalNames[currentInterval[1]]}")
+                print(
+                    "The correct interval was"
+                    f"{self.intervalNames[currentInterval[1]]}"
+                )
                 generateNew = True
                 continue
             elif answere == "replay":

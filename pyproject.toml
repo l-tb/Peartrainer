@@ -11,6 +11,7 @@ click = "^8.1.1"
 
 [tool.poetry.dev-dependencies]
 pytest = "^6.2"
+black = "^22.3.0"
 
 [tool.poetry.scripts]
 peartrainer = "peartrainer.main:main"
