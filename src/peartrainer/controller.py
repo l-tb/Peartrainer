@@ -25,7 +25,7 @@ class Controller:
             "6",
             "7b",
             "7",
-            "8"
+            "8",
         ]
 
         self.intervalNames = {
@@ -41,7 +41,7 @@ class Controller:
             "6": "major sixth",
             "7b": "minor seventh",
             "7": "major seventh",
-            "8": "octave"
+            "8": "octave",
         }
 
         self.helpStr = f"""
@@ -71,9 +71,11 @@ class Controller:
 
         portOptions = "Select Midiport:\n"
         for port in availablePorts:
-            portOptions = portOptions + f"\n({availablePorts.index(port)}) {port}"
+            portOptions = portOptions + (f"\n({availablePorts.index(port)}) "
+                                         f"{port}")
 
-        portOptions = portOptions + f"\n({len(availablePorts)}) create Port\n\n> "
+        portOptions = portOptions + (f"\n({len(availablePorts)})"
+                                     " create Port\n\n> ")
         chosenPort = input(portOptions)
 
         try:
@@ -130,7 +132,8 @@ class Controller:
             if confirmation is True:
                 testing = False
             else:
-                input("Please check your midi connections (press enter to replay)")
+                input("Please check your midi connections"
+                      " (press enter to replay)")
 
     def run(self):
         """Run peartrainer."""
@@ -139,13 +142,12 @@ class Controller:
             if generateNew is True:
                 currentInterval = self.generate_interval()
                 self.play_midi_interval(currentInterval[0])
-                os.system('cls' if os.name == 'nt' else 'clear')
+                os.system("cls" if os.name == "nt" else "clear")
 
             generateNew = False
             try:
-                answere = click.prompt(
-                    "Type the correct interval (type help for more information)"
-                )
+                answere = click.prompt("Type the correct interval"
+                                       " (type help for more information)")
             except KeyboardInterrupt:
                 sys.exit(1)
             if answere == "help":
@@ -153,9 +155,8 @@ class Controller:
             elif answere == "quit":
                 break
             elif answere == "skip":
-                print(
-                    f"The correct interval was {self.intervalNames[currentInterval[1]]}"
-                )
+                print("The correct interval was"
+                      f"{self.intervalNames[currentInterval[1]]}")
                 generateNew = True
                 continue
             elif answere == "replay":
