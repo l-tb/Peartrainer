@@ -18,7 +18,7 @@ jobs:
           python-version: 3.10.4
 
       - name: Install Poetry
-        uses: ClementWalter/poetry-action@v1
+        uses: snok/install-poetry@v1
 
       - name: Cache Poetry virtualenv
         uses: actions/cache@v1
