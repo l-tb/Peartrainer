@@ -17,6 +17,11 @@ jobs:
         with:
           python-version: 3.10.4
 
+      - name: Install ALSA dev
+        run: |
+          sudo apt-get update
+          sudo apt-get install libasound2-dev
+
       - name: Install Poetry
         uses: snok/install-poetry@v1
         with:
