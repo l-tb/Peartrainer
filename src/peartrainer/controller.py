@@ -18,32 +18,6 @@ class Controller:
         self.helpStr = global_vars.helpStr
 
         self.midiout = rtmidi.MidiOut(midiApi)
-        availablePorts = self.midiout.get_ports()
-
-        portOptions = "Select Midiport:\n"
-        for port in availablePorts:
-            portOptions = portOptions + (
-                f"\n({availablePorts.index(port)}) " f"{port}"
-            )
-
-        portOptions = portOptions + (
-            f"\n({len(availablePorts)}) create Port\n\n> "
-        )
-        chosenPort = input(portOptions)
-
-        try:
-            port = int(chosenPort)
-        except ValueError:
-            print("\nInvalid port option.")
-            sys.exit(1)
-
-        if 0 <= port < len(availablePorts):
-            self.midiout.open_port(port)
-        elif port == len(availablePorts):
-            self.midiout.open_virtual_port(name="Peartrainer")
-            input("\nPlease connect the Port. (press Enter to continue)")
-        else:
-            print("\nInvalid port option.")
 
     def _generate_interval(self) -> tuple[tuple[int], str]:
         """Generate random interval."""
@@ -89,6 +63,35 @@ class Controller:
                     "Please check your midi connections"
                     " (press enter to replay)"
                 )
+
+    def open_port(self):
+        """Open midiport."""
+        availablePorts = self.midiout.get_ports()
+
+        portOptions = "Select Midiport:\n"
+        for port in availablePorts:
+            portOptions = portOptions + (
+                f"\n({availablePorts.index(port)}) " f"{port}"
+            )
+
+        portOptions = portOptions + (
+            f"\n({len(availablePorts)}) create Port\n\n> "
+        )
+        chosenPort = input(portOptions)
+
+        try:
+            port = int(chosenPort)
+        except ValueError:
+            print("\nInvalid port option.")
+            sys.exit(1)
+
+        if 0 <= port < len(availablePorts):
+            self.midiout.open_port(port)
+        elif port == len(availablePorts):
+            self.midiout.open_virtual_port(name="Peartrainer")
+            input("\nPlease connect the Port. (press Enter to continue)")
+        else:
+            print("\nInvalid port option.")
 
     def run(self):
         """Run peartrainer."""
