@@ -95,6 +95,8 @@ class Controller:
 
     def run(self):
         """Run peartrainer."""
+        self.open_port()
+
         generateNew = True
         while True:
             if generateNew is True:
