@@ -1,6 +1,7 @@
 """Controller for peartrainer."""
 import sys
 from random import randint
+import global_vars
 import rtmidi
 import time
 import click
@@ -12,59 +13,9 @@ class Controller:
 
     def __init__(self, midiApi: int) -> None:
         """Initialize controller."""
-        self.intervals = [
-            "u",
-            "2b",
-            "2",
-            "3b",
-            "3",
-            "4",
-            "5b",
-            "5",
-            "6b",
-            "6",
-            "7b",
-            "7",
-            "8",
-        ]
-
-        self.intervalNames = {
-            "u": "unison",
-            "2b": "minor second",
-            "2": "major second",
-            "3b": "minor third",
-            "3": "major third",
-            "4": "perfect fourth",
-            "5b": "tritone",
-            "5": "perfect fifth",
-            "6b": "minor sixth",
-            "6": "major sixth",
-            "7b": "minor seventh",
-            "7": "major seventh",
-            "8": "octave",
-        }
-
-        self.helpStr = f"""
-        Interval Keys:
-        {self.intervalNames[self.intervals[0]]}: {self.intervals[0]}
-        {self.intervalNames[self.intervals[1]]}: {self.intervals[1]}
-        {self.intervalNames[self.intervals[2]]}: {self.intervals[2]}
-        {self.intervalNames[self.intervals[3]]}: {self.intervals[3]}
-        {self.intervalNames[self.intervals[4]]}: {self.intervals[4]}
-        {self.intervalNames[self.intervals[5]]}: {self.intervals[5]}
-        {self.intervalNames[self.intervals[6]]}: {self.intervals[6]}
-        {self.intervalNames[self.intervals[7]]}: {self.intervals[7]}
-        {self.intervalNames[self.intervals[8]]}: {self.intervals[8]}
-        {self.intervalNames[self.intervals[9]]}: {self.intervals[9]}
-        {self.intervalNames[self.intervals[10]]}: {self.intervals[10]}
-        {self.intervalNames[self.intervals[11]]}: {self.intervals[11]}
-        {self.intervalNames[self.intervals[12]]}: {self.intervals[12]}
-
-        If you don't know the answere type 'skip' to reveal the interval
-        and get a new question.
-
-        To exit Peartrainer type 'quit'.
-        """
+        self.intervals = global_vars.intervals
+        self.intervalNames = global_vars.intervalNames
+        self.helpStr = global_vars.helpStr
 
         self.midiout = rtmidi.MidiOut(midiApi)
         availablePorts = self.midiout.get_ports()
@@ -94,7 +45,7 @@ class Controller:
         else:
             print("\nInvalid port option.")
 
-    def generate_interval(self) -> tuple[tuple[int], str]:
+    def _generate_interval(self) -> tuple[tuple[int], str]:
         """Generate random interval."""
         firstNote = randint(48, 73)
         newInterval = randint(0, 12)
@@ -102,7 +53,7 @@ class Controller:
         newIntervalName = self.intervals[newInterval]
         return ((firstNote, secondNote), newIntervalName)
 
-    def play_midi_interval(self, interval: tuple[int]) -> None:
+    def _play_midi_interval(self, interval: tuple[int]) -> None:
         """
         Play interval from given tuple.
 
@@ -144,8 +95,8 @@ class Controller:
         generateNew = True
         while True:
             if generateNew is True:
-                currentInterval = self.generate_interval()
-                self.play_midi_interval(currentInterval[0])
+                currentInterval = self._generate_interval()
+                self._play_midi_interval(currentInterval[0])
                 os.system("cls" if os.name == "nt" else "clear")
 
             generateNew = False
@@ -162,13 +113,13 @@ class Controller:
                 break
             elif answere == "skip":
                 print(
-                    "The correct interval was"
+                    "The correct interval was "
                     f"{self.intervalNames[currentInterval[1]]}"
                 )
                 generateNew = True
                 continue
             elif answere == "replay":
-                self.play_midi_interval(currentInterval[0])
+                self._play_midi_interval(currentInterval[0])
             elif answere == currentInterval[1]:
                 print("Correct answere")
                 generateNew = True
