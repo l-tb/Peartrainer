@@ -21,8 +21,6 @@ def main(alsa, jack, core, multimedia) -> None:
     else:
         controller = Controller(0)
 
-    controller.output_test()
-
     controller.run()
 
 

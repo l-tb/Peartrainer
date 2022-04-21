@@ -51,5 +51,5 @@ Interval Keys:
 If you don't know the answere type 'skip' to reveal the interval
 and get a new question.
 
-To exit Peartrainer type 'quit'.
+To exit Peartrainer type 'quit' and 'leave' to return to the main menu.
 """
