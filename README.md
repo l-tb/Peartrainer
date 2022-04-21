@@ -1,4 +1,4 @@
-[![CI](https://github.com/l-tb/Peartrainer/actions/workflows/ci.yml/badge.svg)](https://github.com/l-tb/Peartrainer/actions/workflows/ci.yml)
+[![CI](https://github.com/l-tb/Peartrainer/actions/workflows/ci.yml/badge.svg?event=push)](https://github.com/l-tb/Peartrainer/actions/workflows/ci.yml)
 
 # Peartrainer - A musical ear trainer written in python
 
