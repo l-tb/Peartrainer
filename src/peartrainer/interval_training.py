@@ -24,7 +24,7 @@ class IntervalTraining:
         self.midiout = midiout
 
     def _generate_interval(
-            self, up: bool, down: bool
+        self, up: bool, down: bool
     ) -> tuple[tuple[int], str]:
         """Generate random interval."""
         firstNote = randint(48, 73)

@@ -3,8 +3,13 @@ import inquirer
 
 mainMenu = [
     inquirer.List(
-        'mainMenu',
+        "mainMenu",
         message="Main Menu",
-        choices=["Interval Training", "Quit"],
+        choices=[
+            "Interval Training played upwards",
+            "Interval Training played downwards",
+            "Interval Training played up- and downwards",
+            "Quit",
+        ],
     )
 ]
