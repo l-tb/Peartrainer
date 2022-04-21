@@ -8,6 +8,7 @@ authors = ["Lars <lars@tüftelecke.de>"]
 python = "^3.10"
 python-rtmidi = "^1.4.9"
 click = "^8.1.1"
+inquirer = "^2.9.2"
 
 [tool.poetry.dev-dependencies]
 pytest = "^6.2"

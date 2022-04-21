@@ -1,5 +1,7 @@
 """Controller and main menu of peartrainer."""
 from interval_training import IntervalTraining
+from main_menu import mainMenu
+import inquirer
 import rtmidi
 import click
 import time
@@ -68,10 +70,13 @@ class Controller:
         self.output_test()
         intervaltrianing = IntervalTraining(self.midiout)
         while True:
-            returnvalue = intervaltrianing.run()
+            selection = inquirer.prompt(mainMenu)
+
+            if selection["mainMenu"] == "Interval Training":
+                returnvalue = intervaltrianing.run()
+            elif selection["mainMenu"] == "Quit":
+                returnvalue = True
             if returnvalue is True:
-                del self.midiout
                 break
             else:
                 continue
-            del self.midiout
