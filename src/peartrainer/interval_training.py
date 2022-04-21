@@ -1,7 +1,7 @@
 """Class for intervaltraining."""
 import sys
 import rtmidi
-from random import randint
+from random import randint, choice
 import global_vars
 import time
 import click
@@ -23,11 +23,23 @@ class IntervalTraining:
         self.helpStr = global_vars.helpStr
         self.midiout = midiout
 
-    def _generate_interval(self) -> tuple[tuple[int], str]:
+    def _generate_interval(
+            self, up: bool, down: bool
+    ) -> tuple[tuple[int], str]:
         """Generate random interval."""
         firstNote = randint(48, 73)
         newInterval = randint(0, 12)
-        secondNote = firstNote + newInterval
+
+        if up is True:
+            secondNote = firstNote + newInterval
+        elif down is True:
+            secondNote = firstNote - newInterval
+        elif up is True and down is True:
+            if choice([True, False]) is True:
+                secondNote = firstNote + newInterval
+            else:
+                secondNote = firstNote - newInterval
+
         newIntervalName = self.intervals[newInterval]
         return ((firstNote, secondNote), newIntervalName)
 
@@ -50,16 +62,17 @@ class IntervalTraining:
         self.midiout.send_message(noteTwoOff)
         time.sleep(0.1)
 
-    def run(self) -> bool:
+    def run(self, up: bool, down: bool) -> bool:
         """
         Run peartrainer.
 
         Returns True if peartrainer should exit emidiatly.
+        The booleans determin what types of intervals will be played.
         """
         generateNew = True
         while True:
             if generateNew is True:
-                currentInterval = self._generate_interval()
+                currentInterval = self._generate_interval(up, down)
                 self._play_midi_interval(currentInterval[0])
                 os.system("cls" if os.name == "nt" else "clear")
 
