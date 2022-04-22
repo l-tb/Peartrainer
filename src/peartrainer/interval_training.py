@@ -47,7 +47,7 @@ class IntervalTraining:
         if harmonic is True:
             self.midiout.send_message(noteOneOn)
             self.midiout.send_message(noteTwoOn)
-            time.sleep(0.7)
+            time.sleep(1)
             self.midiout.send_message(noteOneOff)
             self.midiout.send_message(noteTwoOff)
             time.sleep(0.1)
