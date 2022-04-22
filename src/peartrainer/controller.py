@@ -73,7 +73,9 @@ class Controller:
             selection = inquirer.prompt(mainMenu)
 
             if selection["mainMenu"] == "Interval Training":
-                returnvalue = intervaltrianing.run()
+                returnvalue = intervaltrianing.run(False)
+            elif selection["mainMenu"] == "Interval Training (Harmonic)":
+                returnvalue = intervaltrianing.run(True)
             elif selection["mainMenu"] == "Quit":
                 returnvalue = True
             if returnvalue is True:
