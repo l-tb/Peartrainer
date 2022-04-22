@@ -32,7 +32,7 @@ class IntervalTraining:
         return ((firstNote, secondNote), newIntervalName)
 
     def _play_midi_interval(
-        self, interval: tuple[int], simultaneous: bool
+        self, interval: tuple[int], harmonic: bool
     ) -> None:
         """
         Play interval from given tuple.
@@ -44,7 +44,7 @@ class IntervalTraining:
         noteTwoOn = [0x90, interval[1], 112]
         noteTwoOff = [0x80, interval[1], 112]
 
-        if simultaneous is True:
+        if harmonic is True:
             self.midiout.send_message(noteOneOn)
             self.midiout.send_message(noteTwoOn)
             time.sleep(0.7)
@@ -60,7 +60,7 @@ class IntervalTraining:
             self.midiout.send_message(noteTwoOff)
             time.sleep(0.1)
 
-    def run(self, simultaneous: bool) -> bool:
+    def run(self, harmonic: bool) -> bool:
         """
         Run peartrainer.
 
@@ -70,7 +70,7 @@ class IntervalTraining:
         while True:
             if generateNew is True:
                 currentInterval = self._generate_interval()
-                self._play_midi_interval(currentInterval[0], simultaneous)
+                self._play_midi_interval(currentInterval[0], harmonic)
                 os.system("cls" if os.name == "nt" else "clear")
 
             generateNew = False
@@ -96,7 +96,7 @@ class IntervalTraining:
                 generateNew = True
                 continue
             elif answere == "replay":
-                self._play_midi_interval(currentInterval[0], simultaneous)
+                self._play_midi_interval(currentInterval[0], harmonic)
             elif answere == currentInterval[1]:
                 print("Correct answere")
                 generateNew = True

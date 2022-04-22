@@ -7,7 +7,7 @@ mainMenu = [
         message="Main Menu",
         choices=[
             "Interval Training",
-            "Interval Training with simultaneously played intervals",
+            "Interval Training (Harmonic)",
             "Quit",
         ],
     )
