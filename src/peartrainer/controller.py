@@ -1,6 +1,6 @@
 """Controller and main menu of peartrainer."""
 from interval_training import IntervalTraining
-from main_menu import mainMenu
+from main_menu import mainMenu, menuChoices
 import inquirer
 import rtmidi
 import click
@@ -72,13 +72,13 @@ class Controller:
         while True:
             selection = inquirer.prompt(mainMenu)
 
-            if selection["mainMenu"] == "Interval Training (ascending)":
+            if selection["mainMenu"] == menuChoices[0]:
                 returnvalue = intervaltrianing.run(True, False)
-            elif selection["mainMenu"] == "Interval Training (descending)":
+            elif selection["mainMenu"] == menuChoices[1]:
                 returnvalue = intervaltrianing.run(False, True)
-            elif selection["mainMenu"] == "Interval Training (ascending and descending)":
+            elif selection["mainMenu"] == menuChoices[2]:
                 returnvalue = intervaltrianing.run(True, True)
-            elif selection["mainMenu"] == "Quit":
+            elif selection["mainMenu"] == [3]:
                 returnvalue = True
             if returnvalue is True:
                 break
