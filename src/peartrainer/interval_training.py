@@ -30,12 +30,13 @@ class IntervalTraining:
         firstNote = randint(48, 73)
         newInterval = randint(0, 12)
 
-        if ascending is True:
+        if ascending is True and descending is False:
             secondNote = firstNote + newInterval
-        elif descending is True:
+        elif ascending is False and descending is True:
             secondNote = firstNote - newInterval
         elif ascending is True and descending is True:
-            if choice([True, False]) is True:
+            boolean = choice([True, False])
+            if boolean is True:
                 secondNote = firstNote + newInterval
             else:
                 secondNote = firstNote - newInterval
