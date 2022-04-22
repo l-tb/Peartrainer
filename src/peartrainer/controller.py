@@ -73,11 +73,13 @@ class Controller:
             selection = inquirer.prompt(mainMenu)
 
             if selection["mainMenu"] == menuChoices[0]:
-                returnvalue = intervaltrianing.run(True, False)
+                returnvalue = intervaltrianing.run(True, False, False)
             elif selection["mainMenu"] == menuChoices[1]:
-                returnvalue = intervaltrianing.run(False, True)
+                returnvalue = intervaltrianing.run(False, True, False)
             elif selection["mainMenu"] == menuChoices[2]:
-                returnvalue = intervaltrianing.run(True, True)
+                returnvalue = intervaltrianing.run(True, True, False)
+            elif selection["mainMenu"] == menuChoices[3]:
+                returnvalue = intervaltrianing.run(True, False, True)
             elif selection["mainMenu"] == [3]:
                 returnvalue = True
             if returnvalue is True:
