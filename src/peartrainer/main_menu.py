@@ -5,7 +5,7 @@ menuChoices = [
     "Interval Training (ascending)",
     "Interval Training (descending)",
     "Interval Training (ascending and descending)",
-    "Interval Training (harmonic)"
+    "Interval Training (harmonic)",
     "Quit",
 ]
 
