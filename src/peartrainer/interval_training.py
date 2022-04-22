@@ -24,17 +24,17 @@ class IntervalTraining:
         self.midiout = midiout
 
     def _generate_interval(
-        self, up: bool, down: bool
+        self, ascending: bool, descending: bool
     ) -> tuple[tuple[int], str]:
         """Generate random interval."""
         firstNote = randint(48, 73)
         newInterval = randint(0, 12)
 
-        if up is True:
+        if ascending is True:
             secondNote = firstNote + newInterval
-        elif down is True:
+        elif descending is True:
             secondNote = firstNote - newInterval
-        elif up is True and down is True:
+        elif ascending is True and descending is True:
             if choice([True, False]) is True:
                 secondNote = firstNote + newInterval
             else:
@@ -62,7 +62,7 @@ class IntervalTraining:
         self.midiout.send_message(noteTwoOff)
         time.sleep(0.1)
 
-    def run(self, up: bool, down: bool) -> bool:
+    def run(self, ascending: bool, descending: bool) -> bool:
         """
         Run peartrainer.
 
@@ -72,7 +72,9 @@ class IntervalTraining:
         generateNew = True
         while True:
             if generateNew is True:
-                currentInterval = self._generate_interval(up, down)
+                currentInterval = self._generate_interval(
+                    ascending, descending
+                )
                 self._play_midi_interval(currentInterval[0])
                 os.system("cls" if os.name == "nt" else "clear")
 
